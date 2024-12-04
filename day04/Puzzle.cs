@@ -29,21 +29,16 @@ public class Puzzle
                     {
                         var newX = x + w * direction[0];
                         var newY = y + w * direction[1];
-                        if (newX < 0 || newX >= rows || newY < 0 || newY >= cols || grid[newX, newY] != word[w])
-                        {
+                        if (newX < 0 || newX >= rows || newY < 0 || newY >= cols || grid[newX, newY] != word[w]) 
                             break;
-                        }
 
                         if (w == word.Length - 1)
-                        {
                             occurrences++;
-                        }
                     }
                 }
             }
             
         }
-        
         
         return occurrences;
     }
@@ -57,17 +52,15 @@ public class Puzzle
         {
             for (var y = 1; y < cols - 1; y++)
             {
-                if (grid[x, y] == 'A')
-                {
-                    //topLeft - botRight
-                    var diagonal1 = (grid[x - 1, y - 1] == 'M' && grid[x + 1, y + 1] == 'S') ||
-                                     (grid[x - 1, y - 1] == 'S' && grid[x + 1, y + 1] == 'M');
-                    //topRight - botLeft
-                    var diagonal2 = (grid[x + 1, y - 1] == 'M' && grid[x - 1, y + 1] == 'S') ||
-                                    (grid[x + 1, y - 1] == 'S' && grid[x - 1, y + 1] == 'M');
+                if (grid[x, y] != 'A') continue;
+                //topLeft - botRight
+                var diagonal1 = (grid[x - 1, y - 1] == 'M' && grid[x + 1, y + 1] == 'S') ||
+                                (grid[x - 1, y - 1] == 'S' && grid[x + 1, y + 1] == 'M');
+                //topRight - botLeft
+                var diagonal2 = (grid[x + 1, y - 1] == 'M' && grid[x - 1, y + 1] == 'S') ||
+                                (grid[x + 1, y - 1] == 'S' && grid[x - 1, y + 1] == 'M');
                     
-                    if (diagonal1 && diagonal2) occurrences++;
-                }
+                if (diagonal1 && diagonal2) occurrences++;
             }
         }
 
