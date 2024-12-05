@@ -26,13 +26,11 @@ public class Puzzle
     private static List<int> ReorderRow(List<int> row, List<(int, int)> rules)
     {
         var elementOrder = row.ToDictionary(element => element, after => new List<int>());
-        foreach (var rule in rules)
-        {
-            if (row.Contains(rule.Item1) && row.Contains(rule.Item2))
-            {
-                elementOrder[rule.Item1].Add(rule.Item2);
-            }
-        }
+        
+        rules
+            .Where(rule => row.Contains(rule.Item1) && row.Contains(rule.Item2))
+            .ToList()
+            .ForEach(rule => elementOrder[rule.Item1].Add(rule.Item2));
         
         return row.OrderBy(r => elementOrder[r].Count).ToList();
     }
