@@ -50,7 +50,6 @@ public class Puzzle
                 break;
             }
         }
-        Console.WriteLine(input);
         return input;
     }
 }
