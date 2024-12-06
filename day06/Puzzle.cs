@@ -54,17 +54,16 @@ public class Puzzle
     public static int Part2(List<List<char>> map)
     {
         var loopObstacles = 0;
-        for (var y = 0; y < map.Count; y++)
+        var walkedSpots = MovePlayer(map);
+        foreach (var walkedSpot in walkedSpots)
         {
-            for (var x = 0; x < map[y].Count; x++)
+            var currTile = map[walkedSpot.Item2][walkedSpot.Item1];
+            if (currTile == '#' || currTile == '^') continue;
+            var newMap = map.Select((row => row.ToList())).ToList();
+            newMap[walkedSpot.Item2][walkedSpot.Item1] = '#';
+            if (IsLoop(newMap))
             {
-                if (map[y][x] == '#' || map[y][x] == '^') continue;
-                var newMap = map.Select((row => row.ToList())).ToList();
-                newMap[y][x] = '#';
-                if (IsLoop(newMap))
-                {
-                    loopObstacles++;
-                }
+                loopObstacles++;
             }
         }
         
