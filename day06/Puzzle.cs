@@ -58,7 +58,7 @@ public class Puzzle
         foreach (var walkedSpot in walkedSpots)
         {
             var currTile = map[walkedSpot.Item2][walkedSpot.Item1];
-            if (currTile == '#' || currTile == '^') continue;
+            if (currTile is '#' or '^') continue;
             var newMap = map.Select((row => row.ToList())).ToList();
             newMap[walkedSpot.Item2][walkedSpot.Item1] = '#';
             if (IsLoop(newMap))
