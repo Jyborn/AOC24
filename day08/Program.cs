@@ -10,7 +10,7 @@ var part = Environment.GetEnvironmentVariable("part");
 var solution = part switch
 {
     "part1" => Puzzle.Part1(map),
-    "part2" => Puzzle.Part2(),
+    "part2" => Puzzle.Part2(map),
     _ => throw new ArgumentOutOfRangeException($"unexpected part {part}")
 };
 
