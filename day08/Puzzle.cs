@@ -10,26 +10,18 @@ public class Puzzle
     {
         var frequencies = GetFrequencyPositions(map);
         var bounds = new Vector2(map.Count, map[0].Length);
-        Console.WriteLine(bounds.ToString());
-        var validAntinodes = new List<Vector2>();
-        
-        foreach (var frequency in frequencies)
-        {
-            var positions = frequency.Value;
-            var pairs = positions
-                .SelectMany((position1, i) => positions.Where((position2, j) => i != j), (position1, position2) => new { position1, position2 });
-
-            foreach (var pair in pairs)
-            {
-                var validAntinode = HasValidAntinode(pair.position1, pair.position2, bounds);
-                if (validAntinode  != null)
-                {
-                    validAntinodes.Add(validAntinode.Value);
-                }
-            }
-        }
-        
-        return validAntinodes.Distinct().Count();
+        return (
+                from frequency in frequencies
+                select frequency.Value
+                into positions
+                from pair in
+                    positions.SelectMany((position1, i) =>
+                            positions.Where((position2, j) => i != j),
+                        (position1, position2) => new { position1, position2 })
+                select HasValidAntinode(pair.position1, pair.position2, bounds))
+            .OfType<Vector2?>()
+            .Select(validAntinode => validAntinode.Value)
+            .ToList().Distinct().Count();
     }
 
     private static Dictionary<char, List<Vector2>> GetFrequencyPositions(List<string> map)
