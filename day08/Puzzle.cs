@@ -4,8 +4,6 @@ namespace day08;
 
 public class Puzzle
 {
-    
-    // varje freq kolla distance till alla samma freq row, cols och se om pos +- distance är utanför
     public static int Part1(List<string> map)
     {
         var frequencies = GetFrequencyPositions(map);
