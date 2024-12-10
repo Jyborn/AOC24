@@ -1,0 +1,28 @@
+﻿{
+  "author": "Jyborn",
+  "name": "Advent of Code Day Application",
+  "description": "Project for creating a advent of code day.",
+  "identity": "jyborn.aoc.1.0",
+  "shortName": "aoc",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "TemplateDay",
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net8.0" 
+        },
+        {
+          "choice": "net9.0"
+        }
+      ],
+      "defaultValue": "net8.0"
+    }
+  }
+}
