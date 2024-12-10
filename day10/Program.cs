@@ -1,14 +1,16 @@
 ﻿using day10;
 
-using FileStream fs = new("input.txt", FileMode.Open, FileAccess.Read);
+using FileStream fs = new("test.txt", FileMode.Open, FileAccess.Read);
 using StreamReader sr = new(fs);
-var line = sr.ReadLine() ?? "";
+string line;
+var grid = new List<char[]>();
+while ((line = sr.ReadLine()) != null) grid.Add(line.ToCharArray()); 
 
 var part = Environment.GetEnvironmentVariable("part");
 var solution = part switch
 {
-    "part1" => Puzzle.Part1(line),
-    "part2" => Puzzle.Part2(line),
+    "part1" => Puzzle.Part1(grid),
+    "part2" => Puzzle.Part2(grid),
     _ => throw new ArgumentOutOfRangeException($"unexpected part {part}")
 };
 
