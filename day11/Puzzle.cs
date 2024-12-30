@@ -9,14 +9,11 @@ public class Puzzle
         var numbers = input.Split(" ").Select(long.Parse).ToList();
         for (var i = 0; i < nBlinks; i++)
         {
-            //Console.WriteLine(string.Join(" ", numbers));
-            Console.WriteLine($"blink {i}");
             numbers = numbers.SelectMany(number => Blink(number)).ToList();
         }
         return numbers.Count;
     }
-
-
+    
     private static List<long> Blink(long number)
     {
         var numString = number.ToString();
