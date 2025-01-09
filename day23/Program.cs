@@ -13,6 +13,7 @@ while ((line = sr.ReadLine()) != null)
     connections[computers[1]].Add(computers[0]);
 }
 connections.ToList().ForEach(connection => Console.WriteLine($"{connection.Key}: {string.Join(",", connection.Value)}"));
+
 var part = Environment.GetEnvironmentVariable("part");
 var solution = part switch
 {
